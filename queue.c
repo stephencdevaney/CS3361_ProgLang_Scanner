@@ -1,5 +1,6 @@
 #include "queue.h"
 
+
 extern queue_t* newQueue() // initalizes the values of a queue
 {
     // Name: newQueue

@@ -1,0 +1,12 @@
+
+compile_flags.txt
+CS3361_ProgLang_Scanner.mk
+CS3361_ProgLang_Scanner.project
+CS3361_ProgLang_Scanner.txt
+Debug/.d
+Debug/CS3361_ProgLang_Scanner.exe
+Debug/main.c.o
+Debug/main.c.o.d
+Debug/queue.c.o
+Debug/queue.c.o.d
+tags

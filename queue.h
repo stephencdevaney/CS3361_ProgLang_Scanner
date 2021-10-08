@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct qnode // type definition for a queue's node
 {
     char *token; // token on the queue
