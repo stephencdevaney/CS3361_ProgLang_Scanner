@@ -2,14 +2,12 @@
 #include <stdlib.h>
 
 
-typedef struct qnode // type definition for a queue's node
-{
+typedef struct qnode{ // type definition for a queue's node
     char *token; // token on the queue
     struct qnode *next; // pointers to the next element on the queue
 }queue_node;
 
-typedef struct // type definition for a whole queue
-{
+typedef struct{ // type definition for a whole queue
     queue_node *front, *rear; // pointers to the front an rear elements of the queue
     int num_of_elements;
 }queue_t;
