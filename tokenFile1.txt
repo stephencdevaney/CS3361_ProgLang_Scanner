@@ -1,0 +1,6 @@
+test1.txt
+write
+/* test
+   line */
+*
+three 3
