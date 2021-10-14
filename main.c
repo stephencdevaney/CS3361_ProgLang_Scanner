@@ -1,3 +1,8 @@
+/* use in scanner function
+c = fgetc(inFile);
+ungetc(c, inFile);
+ */
+
 #include "queue.h"
 #include <string.h>
 
@@ -5,25 +10,29 @@
 int main(int argc, char **argv){
     FILE *inFile;
     char curToken[20];
-    inFile = fopen("tokenFile1.txt", "r");
-    if(inFile == NULL)
-    {
-        printf("File does not exist!!!");
-        exit(1);
+    
+    inFile = fopen("tokenFile01.txt", "r");
+    if(inFile == NULL){
+        printf("File does not exist!!!\n");
+        return 0;
     }
+    
     queue_t *tokqueue;
     tokqueue = newQueue();
     int c;
-    c = fgetc(inFile);
-    while(c != EOF){
-        printf("%c", (char)c);
-        printf("/n");
-        //ungetc(c, inFile);
-        if(strcmp(curToken, "error")){
-            printf("%s", curToken);
-            exit(1);
+    while(!feof(inFile)){  //!feof(inFile)
+        //curToken = scan(inFile);
+        if(strcmp(curToken, "error") == 0){
+            printf("%s\n", curToken);
+            fclose(inFile);
+            return 0;
         }
-        c = fgetc(inFile);
+        enqueue(tokqueue, curToken);
     }
-	exit(0);
+    fclose(inFile);
+    /*while(!isempty(tokqueue)){
+        printf("%s", dequeue(tokqueue));
+    }*/
+    printf("\n");
+	return 0;
 }

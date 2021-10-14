@@ -14,6 +14,6 @@ typedef struct{ // type definition for a whole queue
 
 extern queue_t* newQueue(); // initalizes the values of a queue
 extern queue_node* newNode(char *); // gets a new node for a queue
-extern int isempty(queue_t); // checks if the queue is empty
+extern int isempty(queue_t *); // checks if the queue is empty
 extern void enqueue(queue_t *, char *); // adds an element to the queue
 extern char* dequeue(queue_t *); // removes an element from the queue
