@@ -3,6 +3,5 @@ write
 read
 /* test
    line */
-(+-*/) 3 .33
+(+-*/) 3 . 33
 three3 := 3.33
-5five
