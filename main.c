@@ -9,6 +9,11 @@ char** createTokTable();
 char** createKeyTable();
 void cleanuptables(int **, char **, char **);
 
+//Name : main
+//Input : File Name, given from the command line on the console
+//Output : A queue that holds all tokens identified by the scanner and a token to check for an error
+//Purpose : Reads a file into the program and establishes a queue for the scanner
+//          Once the queue is complete, each token of the queue is printed to the screen
 
 int main(int argc, char **argv){
     FILE *inFile;
@@ -44,8 +49,13 @@ int main(int argc, char **argv){
 	return 0;
 }
 
+//Name : scan
+//Input : Pointer File read in with the main function
+//Output : The token to be output to the main program
+//Purpose : help
 
-char* scan(FILE *inFile){  //scanner function
+
+char* scan(FILE *inFile){  
     // scanner setup
     int **transitionTable;
     char **tokenTable;
@@ -112,10 +122,14 @@ char* scan(FILE *inFile){  //scanner function
     return outputToken;
 }
 
+//Name : getCharIndex
+//Input : a single character read in from the input file
+//Output : An integer value 0-13, given the char value input
+//Purpose : Returns an input value correlating to the character scanned in the input file; Based off the automata based scanner in the book/slides.
 
-int getCharIndex(char cur_char){  //Function that takes a char input and returns an integer value, based on the scanned character
+int getCharIndex(char cur_char){  
     int cur_char_index;
-    switch (cur_char) {
+    switch (cur_char) { //Controlled using a switch case
         case ' ':  
             cur_char_index = 0;  //whitespace or tab
             break;
@@ -150,9 +164,9 @@ int getCharIndex(char cur_char){  //Function that takes a char input and returns
             cur_char_index = 9;  //equals
             break;
         case '.':
-            cur_char_index = 10; //period/decimal
+            cur_char_index = 10; //decimal
             break;
-        default:  //Default case holds the 11th and 12th case as a means to easier check for a letter or digit using isAlpha and isDigit() 
+        default:  //Default case holds the 11th and 12th case as a means to easier check for a letter or digit using isAlpha and isDigit
             if(isdigit(cur_char)) cur_char_index = 11;  //Digit
             else if(isalpha(cur_char)) cur_char_index = 12; //Letter
             else cur_char_index = 13;  //Default
@@ -161,6 +175,10 @@ int getCharIndex(char cur_char){  //Function that takes a char input and returns
     return cur_char_index;
 }
 
+//Name : createTranTable
+//Input : None
+//Output : A new transition table pointer
+//Purpose : Utilizes and holds the transition table from the book; Returns a transition table pointer for the calling function
 
 int** createTranTable(){
     int TranTable[16][14] = {
@@ -195,6 +213,10 @@ int** createTranTable(){
     return newTranTab; // return the transition table
 }
 
+//Name : createTokTable
+//Input : None
+//Output : A new token table pointer
+//Purpose : Holds an array of tokens for the transition table and scanner to reference
 
 char** createTokTable(){
     char TokTab[16][7] = {
@@ -226,6 +248,10 @@ char** createTokTable(){
     return newTokTab; // return the token table
 }
 
+//Name : createKeyTable
+//Input : None
+//Output : A new Keyword table pointer
+//Purpose : Holds an small array for the scanner to reference in the case of keywords "read" and "write" being encountered
 
 char** createKeyTable(){
     char keyTab[2][7] = {{"read\0"}, {"write\0"}};
@@ -240,6 +266,10 @@ char** createKeyTable(){
     return newKeyTab; // return the keyword table to calling function
 }
 
+//Name : cleanuptables
+//Input : The transition table, keyword table and token table
+//Output : None (Void function)
+//Purpose : Frees the memory allocated for the scanner's tables to finish the scan function.
 
 void cleanuptables(int **transitionTable, char **tokenTable, char **keywordTable){
     //free all memory allocated for the scanner's tables
