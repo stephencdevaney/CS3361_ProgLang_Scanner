@@ -13,9 +13,9 @@ void cleanuptables(int **, char **, char **);
 int main(int argc, char **argv){
     FILE *inFile;
     char *curToken;
-    inFile = fopen("tokenFile1.txt", "r");
-    if(inFile == NULL){
-        printf("File does not exist!!!\n");
+    inFile = fopen("tokenFile1.txt", "r");  //Read in the text file to scan
+    if(inFile == NULL){  //Failsafe if the input file cannot be found
+        printf("File does not exist!!!\n"); 		
         return 0;
     }
     queue_t *tokqueue;
@@ -25,17 +25,18 @@ int main(int argc, char **argv){
         ungetc(cur_char, inFile); // places character back into file stream
         curToken = scan(inFile);
         if(curToken == NULL) continue;
-        if(strcmp(curToken, "error") == 0){
+        if(strcmp(curToken, "error") == 0){  //Checks if the current token points to an error
             printf("(%s)\n", curToken);
             fclose(inFile);
             return 0;
         }
-        else enqueue(tokqueue, curToken);
+        else enqueue(tokqueue, curToken);  //Initializes a token to be added to the queue if no errors are found
     }
     fclose(inFile);
+    //Setup to run through the completed queue and output the scanner's results to the screen
     if(!isempty(tokqueue)) printf("(%s", dequeue(tokqueue));
     while(!isempty(tokqueue)){
-        printf(" %s", dequeue(tokqueue));
+        printf(" %s", dequeue(tokqueue));  //Prints out each token by order of our queue
         if(!isempty(tokqueue)) printf(",");
         else printf(")");
     }
@@ -44,7 +45,7 @@ int main(int argc, char **argv){
 }
 
 
-char* scan(FILE *inFile){
+char* scan(FILE *inFile){  //scanner function
     // scanner setup
     int **transitionTable;
     char **tokenTable;
@@ -88,7 +89,7 @@ char* scan(FILE *inFile){
     if(curState == 16){ // if the current state is id check to see if the id is in the keyword table
         for(int i = 0; i < 2; i++){
             if(strcmp(keywordTable[i], idImage) == 0){
-                tempOutputToken = keywordTable[i];
+                tempOutputToken = keywordTable[i];  //If in the keyword table, set the temp token to one of "read" or "write" as stored by idImage
                 break;
             }
             else tempOutputToken = tokenTable[curState-1];
@@ -112,49 +113,49 @@ char* scan(FILE *inFile){
 }
 
 
-int getCharIndex(char cur_char){
+int getCharIndex(char cur_char){  //Function that takes a char input and returns an integer value, based on the scanned character
     int cur_char_index;
     switch (cur_char) {
-        case ' ':
-            cur_char_index = 0;
+        case ' ':  
+            cur_char_index = 0;  //whitespace or tab
             break;
         case '\t':
             cur_char_index = 0;
             break;
         case '\n':
-            cur_char_index = 1;
+            cur_char_index = 1;  //newline
             break;
         case '/':
-            cur_char_index = 2;
+            cur_char_index = 2;  //division
             break;
         case '*':
-            cur_char_index = 3;
+            cur_char_index = 3;  //times
             break;
         case '(':
-            cur_char_index = 4;
+            cur_char_index = 4;  //Left Parentheses
             break;
         case ')':
-            cur_char_index = 5;
+            cur_char_index = 5;  //Right parentheses
             break;
         case '+':
-            cur_char_index = 6;
+            cur_char_index = 6;  //plus
             break;
         case '-':
-            cur_char_index = 7;
+            cur_char_index = 7;  //minus
             break;
         case ':':
-            cur_char_index = 8;
+            cur_char_index = 8;  //colon
             break;
         case '=':
-            cur_char_index = 9;
+            cur_char_index = 9;  //equals
             break;
         case '.':
-            cur_char_index = 10;
+            cur_char_index = 10; //period/decimal
             break;
-        default:
-            if(isdigit(cur_char)) cur_char_index = 11;
-            else if(isalpha(cur_char)) cur_char_index = 12;
-            else cur_char_index = 13; 
+        default:  //Default case holds the 11th and 12th case as a means to easier check for a letter or digit using isAlpha and isDigit() 
+            if(isdigit(cur_char)) cur_char_index = 11;  //Digit
+            else if(isalpha(cur_char)) cur_char_index = 12; //Letter
+            else cur_char_index = 13;  //Default
             break;
     }
     return cur_char_index;
