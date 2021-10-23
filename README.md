@@ -1,5 +1,5 @@
 # CS3361 DFA-Scanner
-[GitHub Repository] https://github.com/stephencdevaney/CS3361_ProgLang_Scanner.git
+[GitHub Repository](https://github.com/stephencdevaney/CS3361_ProgLang_Scanner.git)
 
 
 
