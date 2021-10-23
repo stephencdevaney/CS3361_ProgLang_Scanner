@@ -19,8 +19,8 @@ gcc -o scanner scanner.c queue.c -lm
 
 ### (Step 4) Executing:
 #### Executing with included test cases:
-> scanner tokenFile1.txt
-> scanner tokenFile2.txt
+* scanner tokenFile1.txt
+* scanner tokenFile2.txt
 * scanner tokenFile3.txt
 * scanner tokenFile4.txt
 * scanner tokenFile5.txt
