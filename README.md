@@ -1,6 +1,9 @@
 # CS3361 DFA-Scanner
 Link to repository: https://github.com/stephencdevaney/CS3361_ProgLang_Scanner.git
 
+
+
+How to run the file
 (Step 1) check to see if you have gcc:
 gcc -v
 if don't down load a gcc complier
