@@ -3,7 +3,7 @@ Link to repository: https://github.com/stephencdevaney/CS3361_ProgLang_Scanner.g
 
 
 
-## How to run the file:
+## How to compile and run the file from the command line:
 ### (Step 1) check to see if you have gcc:
 gcc -v
 if don't down load a gcc complier
