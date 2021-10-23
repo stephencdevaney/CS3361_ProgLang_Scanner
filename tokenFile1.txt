@@ -5,4 +5,5 @@ read
    line */
 (+-*/) 3 .33
 three3 := 3.33
+// reada write read (+-*/) 3 .33
 5five
