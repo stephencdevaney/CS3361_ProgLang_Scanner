@@ -3,13 +3,12 @@
 
 
 
-## How to compile and run the file from the command line:
+## How to compile and run the file from the windows command line:
 ### (Step 1) check to see if you have gcc:
 gcc -v
 if don't down load a gcc complier
 
 ### (Step 2) check to make sure you are in the correct file location:
-Windows:
 cd // changes directory
 dir // list files in the current directory
 
